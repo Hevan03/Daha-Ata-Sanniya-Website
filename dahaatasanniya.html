@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The 18 Sanniya Demons - Daha Ata Sanniya</title>
     <style>
-        /* 1. Global Reset - Lock Viewport */
+        /* 1. Global Reset - Strict Viewport Lock */
         body, html {
             margin: 0;
             padding: 0;
@@ -19,16 +19,18 @@
             overflow: hidden; /* Strictly no scrolling */
         }
 
-        /* 2. Header */
+        /* 2. Header - Constant 10% Height */
         header {
             width: 100%;
-            height: 10vh; /* Responsive height */
+            height: 10vh;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             background: rgba(0,0,0,0.8);
             z-index: 20;
+            box-sizing: border-box;
+            border-bottom: 1px solid #333;
         }
 
         .back-button {
@@ -36,12 +38,12 @@
             left: 20px;
             text-decoration: none;
             color: #ffffff;
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             line-height: 1;
         }
 
         header h1 {
-            font-size: clamp(1.2rem, 3vw, 2.5rem);
+            font-size: clamp(1rem, 3vw, 2rem);
             color: #ffffff;
             margin: 0;
             text-transform: uppercase;
@@ -49,20 +51,30 @@
             font-weight: 700;
         }
 
-        /* 3. The Grid - Fills remaining 90vh */
+        /* 3. The Grid - Constant 90% Height */
         .grid-container {
-            flex: 1;
+            height: 90vh;
             display: grid;
-            /* Desktop: 6 columns, 3 rows */
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap: 5px;
-            padding: 5px;
+            gap: 4px;
+            padding: 4px;
             box-sizing: border-box;
             perspective: 1000px;
+            
+            /* Default Desktop: 6 columns, 3 rows */
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(3, 1fr);
         }
 
-        /* 4. Sanniya Card */
+        /* 4. Responsive Grid Logic */
+        /* Tablet & Mobile: 3 columns, 6 rows */
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(6, 1fr);
+            }
+        }
+
+        /* 5. Sanniya Card */
         .sanniya-card {
             width: 100%;
             height: 100%;
@@ -89,16 +101,17 @@
             flex-direction: column;
         }
 
-        /* 5. Front Face - Image Fill */
+        /* Front Face - Image Fit */
         .front-face { background-color: #1a1a1a; }
 
         .mask-image {
             width: 100%;
             height: 100%;
-            object-fit: fill; /* Fills the card entirely as requested */
+            object-fit: cover; /* Prevents "ugly" stretching */
+            display: block;
         }
 
-        /* 6. Back Face */
+        /* Back Face - Text Scaling */
         .back-face {
             background-color: #ffcc00;
             color: black;
@@ -112,25 +125,32 @@
             align-items: center;
         }
 
-        .sanniya-sinhala { font-size: 0.8rem; font-weight: bold; margin: 0; }
-        .sanniya-title-en { font-size: 0.65rem; margin: 2px 0; color: #333; font-weight: bold; }
+        .sanniya-sinhala { 
+            font-size: clamp(0.7rem, 1.5vh, 1.2rem); 
+            font-weight: bold; 
+            margin: 0; 
+        }
+        .sanniya-title-en { 
+            font-size: clamp(0.6rem, 1.2vh, 1rem); 
+            margin: 2px 0; 
+            color: #333; 
+            font-weight: bold; 
+            text-transform: uppercase;
+        }
         .sanniya-description {
-            font-size: 0.55rem;
+            font-size: clamp(0.5rem, 1vh, 0.85rem);
             line-height: 1.1;
+            margin: 2px 0 0 0;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        /* 7. Mobile View: 3 columns, 6 rows */
-        @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(6, 1fr);
-            }
-            .back-button { font-size: 2rem; left: 10px; }
-            header h1 { font-size: 1.1rem; }
+        /* Extra small mobile adjustments to keep text inside cards */
+        @media (max-height: 600px) {
+            .sanniya-description { display: none; }
+            .sanniya-sinhala { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -142,10 +162,9 @@
     </header>
 
     <div class="grid-container">
-        
         <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
-                <img src="jalasanniya.jpeg" alt="Jala Sanniya" class="mask-image">
+                <img src="jalasanniya.jpg" alt="Jala Sanniya" class="mask-image">
             </div>
             <div class="card-face back-face">
                 <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
@@ -165,7 +184,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="korasanniya.jpeg" alt="Kora Sanniya" class="mask-image">
             </div>
@@ -187,7 +206,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="ginijalasanniya.jpeg" alt="GiniJala Sanniya" class="mask-image">
             </div>
@@ -209,7 +228,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="gedisanniya.jpeg" alt="Gedi Sanniya" class="mask-image">
             </div>
@@ -231,7 +250,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="bhuthasanniya.jpeg" alt="Bhutha Sanniya" class="mask-image">
             </div>
@@ -253,7 +272,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="bihirisanniya.jpeg" alt="Bihiri Sanniya" class="mask-image">
             </div>
@@ -275,7 +294,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="marusanniya.jpeg" alt="Maru Sanniya" class="mask-image">
             </div>
@@ -297,7 +316,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="pithsanniya.jpeg" alt="Pith Sanniya" class="mask-image">
             </div>
@@ -319,7 +338,7 @@
             </div>
         </div>
 
-              <div class="sanniya-card" onclick="flipCard(this)">
+        <div class="sanniya-card" onclick="flipCard(this)">
             <div class="card-face front-face">
                 <img src="devasanniya.jpeg" alt="Deva Sanniya" class="mask-image">
             </div>
@@ -340,13 +359,6 @@
                 <p class="sanniya-description">Stomach diseases and loss of appetite.</p>
             </div>
         </div>
-
-        <script>
-            const container = document.querySelector('.grid-container');
-            const cardMarkup = container.innerHTML;
-            // Add 16 more cards to complete the 18
-        </script>
-
     </div>
 
     <script>
