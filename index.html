@@ -103,8 +103,9 @@
         .gate-right .word-wrapper { align-items: flex-start; text-align: left; }
 
         /* English Main Title - NOW BIGGER */
+        @media (min-width: 600px) {
         .gate h1 {
-            font-size: clamp(2.5rem, 9vw, 5rem); /* Increased size for English dominance */
+            font-size: clamp(1.4rem, 7vw, 2rem); /* Increased size for English dominance */
             color: white;
             margin: 0;
             transition: 0.3s;
@@ -116,7 +117,7 @@
 
         /* Sinhala Sub-title - NOW SMALLER */
         .sinhala-sub {
-            font-size: clamp(1rem, 3vw, 1.5rem); /* Reduced size to support English */
+            font-size: clamp(2rem, 3vw, 1.5rem); /* Reduced size to support English */
             color: white;
             margin: 5px 0;
             opacity: 0.8;
@@ -133,6 +134,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+    }
 
         /* The White Line */
         .tagline-separator {
