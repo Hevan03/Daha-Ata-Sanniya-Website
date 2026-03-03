@@ -37,7 +37,10 @@
             z-index: 1;
             padding: 20px 0;
             box-sizing: border-box;
+            pointer-events: none; /* Prevents layer from blocking gate clicks */
         }
+
+        .open .details-layer { opacity: 1; pointer-events: auto; }
 
         .content-center {
             width: 90%; 
@@ -96,16 +99,15 @@
         .word-wrapper {
             display: flex;
             flex-direction: column;
-            padding: 0 07px; /* Pulls the gates close to the center */
+            padding: 0 2px;
         }
 
         .gate-left .word-wrapper { align-items: flex-end; text-align: right; }
         .gate-right .word-wrapper { align-items: flex-start; text-align: left; }
 
-        /* English Main Title - NOW BIGGER */
-        @media (min-width: 600px) {
+        /* Titles: Applied to all screens by default */
         .gate h1 {
-            font-size: clamp(1.4rem, 7vw, 2rem); /* Increased size for English dominance */
+            font-size: clamp(1.4rem, 7vw, 2rem); 
             color: white;
             margin: 0;
             transition: 0.3s;
@@ -113,18 +115,18 @@
             text-transform: uppercase;
             line-height: 1;
             font-weight: bold;
+            letter-spacing: 0px;
         }
 
-        /* Sinhala Sub-title - NOW SMALLER */
         .sinhala-sub {
-            font-size: clamp(2rem, 3vw, 1.5rem); /* Reduced size to support English */
+            font-size: clamp(2rem, 3vw, 1.5rem);
             color: white;
             margin: 5px 0;
             opacity: 0.8;
             font-weight: normal;
+            letter-spacing: 0px;
         }
 
-        /* Tagline */
         .subtitle {
             font-size: clamp(1rem, 2.5vw, 1.3rem);
             color: white;
@@ -132,31 +134,24 @@
             padding-top: 10px;
             white-space: nowrap;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-    }
-
-        /* The White Line */
-        .tagline-separator {
-            width: 100%;
-            height: 2px;
-            background-color: white;
-            margin-top: 15px;
+            letter-spacing: 0px;
         }
 
         .gate:hover h1 {
             transform: scale(1.02);
-            transition: 0.3s;
         }
 
         /* 4. ANIMATION TRIGGER CLASS */
         .open .gate-left { transform: translateX(-100%); }
         .open .gate-right { transform: translateX(100%); }
-        .open .details-layer { opacity: 1; }
         
         body.open { overflow-y: auto; }
 
+        /* 5. Mobile Specific Adjustments */
         @media (max-width: 600px) {
+            .gate h1 {
+                font-size: clamp(1.4rem, 7vw, 1.8rem); /* Shrink for mobile narrowness */
+            }
             .description { text-align: justify; }
             .content-center { margin-top: 2vh; }
         }
@@ -202,18 +197,16 @@ Daha Ata Sanniya is a traditional Sri Lankan healing ritual performed to cure il
     </script>
 
     <audio id="bg-music" loop autoplay>
-    <source src="Srilankan_Traditional_Drums_yak_beraya_02_යක_බරය_hBG7afIo_8_c (1).mp3" type="audio/mpeg">
+        <source src="Srilankan_Traditional_Drums_yak_beraya_02_යක_බරය_hBG7afIo_8_c (1).mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Browsers block audio until a user clicks something.
-        // This starts the music as soon as the user clicks anywhere.
         document.body.addEventListener('click', function() {
-        var audio = document.getElementById('bg-music');
-        if (audio.paused) {
-            audio.play();
-        }
-         }, { once: true });
+            var audio = document.getElementById('bg-music');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
     </script>
 
 </body>
