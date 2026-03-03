@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daha Ata Sanniya - The Sacred Ritual</title>
+    <style>
+        /* 1. Global Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            width: 100%;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden; 
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 2. BACKGROUND LAYER: Details Content */
+        .details-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            opacity: 0; 
+            transition: opacity 2s ease 1s; 
+            z-index: 1;
+            padding: 20px 0;
+            box-sizing: border-box;
+        }
+
+        .content-center {
+            width: 90%; 
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 5vh;
+        }
+
+        .content-center h2 {
+            font-size: clamp(2rem, 7vw, 3rem);
+            margin: 0 0 10px 0;
+            color: #ffcc00;
+        }
+
+        .description {
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 220px;
+        }
+
+        .clickable-image {
+            width: 100%;
+            height: auto;
+            mix-blend-mode: screen; 
+            filter: contrast(1.1) brightness(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        /* 3. FRONT LAYER: The Gates (Split by Word) */
+        .gate {
+            position: fixed;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #1a1a1a;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            transition: transform 5s ease-in-out; 
+            cursor: pointer;
+        }
+
+        .gate-left {
+            left: 0;
+            justify-content: flex-end; /* Align first word to the split line */
+        }
+
+        .gate-right {
+            right: 0;
+            justify-content: flex-start; /* Align second word to the split line */
+        }
+
+        .word-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 2px; /* Space between the two words */
+        }
+
+        .gate-left .word-wrapper { align-items: flex-end; }
+        .gate-right .word-wrapper { align-items: flex-start; }
+
+        .gate h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            color: #d4af37;
+            margin: 0;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .gate:hover h1 {
+            color: #ffcc00;
+            transform: scale(1.02);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #cccccc;
+            margin-top: 5px;
+            white-space: nowrap;
+        }
+
+        /* 4. ANIMATION TRIGGER CLASS */
+        .open .gate-left { transform: translateX(-100%); }
+        .open .gate-right { transform: translateX(100%); }
+        .open .details-layer { 
+            opacity: 1; 
+        }
+        
+        body.open {
+            overflow-y: auto; 
+        }
+
+        @media (max-width: 600px) {
+            .description { text-align: justify; }
+            .content-center { margin-top: 2vh; }
+            .subtitle { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="gate-sound" src="srilankan-traditional-drums-yak-beraya-02-hbg7afio-8-c_RRjzyy2T.mp3"></audio>
+
+    <div class="details-layer">
+        <div class="content-center">
+            <h2>දහ අට සන්නිය</h2>
+            <div class="description">
+                <p>
+Daha Ata Sanniya is a traditional Sri Lankan healing ritual performed to cure illnesses believed to be caused by evil spirits. The term means “Eighteen Demons,” referring to eighteen supernatural beings thought to bring different diseases and misfortunes. This ritual combines dance, drumming, chanting, and elaborate masks representing each demon. It is mainly practiced in southern Sri Lanka, especially in rural communities. The ceremony is both a spiritual and cultural performance, led by skilled exorcist dancers. Beyond healing, Daha Ata Sanniya preserves Sri Lanka’s rich folklore, mask-making traditions, and indigenous beliefs passed down through generations.                </p>
+            </div>
+            <div class="image-container">
+                <a href="dahaatasanniya.html">
+                    <img src="HDmasktraditional.jpg" alt="Daha Ata Sanniya Mask" class="clickable-image">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="left-gate" class="gate gate-left" onclick="openGates()">
+        <div class="word-wrapper">
+            <h1>දහඅට</h1>
+            <p class="subtitle">The Sacred Healing</p>
+        </div>
+    </div>
+    
+    <div id="right-gate" class="gate gate-right" onclick="openGates()">
+        <div class="word-wrapper">
+            <h1>සන්නිය</h1>
+            <p class="subtitle">Ritual Of Sri Lanka</p>
+        </div>
+    </div>
+
+    <script>
+        function openGates() {
+            const audio = document.getElementById('gate-sound');
+            
+            audio.play().catch(error => {
+                console.log("Audio playback was prevented by browser interaction policy.");
+            });
+
+            document.body.classList.add('open');
+        }
+    </script>
+
+</body>
+</html>

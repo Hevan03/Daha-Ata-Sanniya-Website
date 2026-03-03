@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 18 Sanniya Demons - Daha Ata Sanniya</title>
+    <style>
+        /* 1. Global Reset & Body Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            width: 100%;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 2. Header and Navigation */
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 20px;
+            text-decoration: none;
+            color: #ffcc00;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: #d4af37;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* 3. The Sanniya Grid */
+        .grid-container {
+            width: 90%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 20px;
+            box-sizing: border-box;
+            perspective: 1000px;
+        }
+
+        /* 4. Sanniya Card (Flip Mechanics) */
+        .sanniya-card {
+            width: 100%;
+            height: 450px; /* Increased height for better vertical alignment */
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .sanniya-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 5. Front Face - Updated to match Jala Sanniya layout */
+        .front-face {
+            background-color: #f3d45a; /* Matching the yellow background in the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mask-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This makes the image fill the card like the sample */
+            display: block;
+        }
+
+        /* 6. Back Face (Description) */
+        .back-face {
+            background-color: #ffcc00;
+            color: black;
+            transform: rotateY(180deg);
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .sanniya-sinhala {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: black;
+            margin: 0 0 10px 0;
+        }
+
+        .sanniya-title-en {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+
+        .sanniya-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        /* 7. Responsive Mobile Tweaks */
+        @media (max-width: 800px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 500px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .sanniya-card { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-button">
+            &larr; <span style="margin-left: 5px;">Ritual</span>
+        </a>
+        <h1>දහඅට සන්නිය</h1>
+    </header>
+
+    <div class="grid-container">
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+          <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        <div class="sanniya-card" onclick="flipCard(this)">
+            <div class="card-face front-face">
+                <img src="jalasanniya.jpeg" alt="Jala Sanniya Mask" class="mask-image">
+            </div>
+            <div class="card-face back-face">
+                <h3 class="sanniya-sinhala">ජල සන්නිය</h3>
+                <h4 class="sanniya-title-en">Jala Sanniya (Demons of Water)</h4>
+                <p class="sanniya-description">Responsible for water-borne illnesses, such as dysentery, cholera, and severe vomiting. It causes coldness throughout the body and a powerful thirst.</p>
+            </div>
+        </div>
+
+        </div>
+
+    <script>
+        function flipCard(cardElement) {
+            cardElement.classList.toggle('flipped');
+        }
+    </script>
+
+</body>
+</html>
