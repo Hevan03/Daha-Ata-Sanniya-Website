@@ -16,9 +16,6 @@ View the project here: https://hevan03.github.io/Daha-Ata-Sanniya-Website/
 * **CSS3** - Custom animations, 3D transforms, and Flexbox/Grid layouts.
 * **JavaScript** - Toggle logic for interactive card flipping.
 
-## 📸 Project Preview
-
-
 ## 📅 Future Roadmap
 The client has requested the following features for future updates:
 - [ ] **Audio Integration:** Traditional low-country drumming (Bera) loops for each card.
@@ -30,4 +27,4 @@ The client has requested the following features for future updates:
 **[Hevan03]** *Available for further web development and cultural preservation projects.*
 
 ---
-© 2024 Daha Ata Sanniya Project. All traditional rights reserved.
+© 2026 Daha Ata Sanniya Project. All traditional rights reserved.
