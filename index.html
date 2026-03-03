@@ -199,5 +199,20 @@ Daha Ata Sanniya is a traditional Sri Lankan healing ritual performed to cure il
         }
     </script>
 
+    <audio id="bg-music" loop autoplay>
+    <source src="Srilankan_Traditional_Drums_yak_beraya_02_යක_බරය_hBG7afIo_8_c (1).mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Browsers block audio until a user clicks something.
+        // This starts the music as soon as the user clicks anywhere.
+        document.body.addEventListener('click', function() {
+        var audio = document.getElementById('bg-music');
+        if (audio.paused) {
+            audio.play();
+        }
+         }, { once: true });
+    </script>
+
 </body>
 </html>
