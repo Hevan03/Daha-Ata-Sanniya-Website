@@ -3,7 +3,7 @@
 An interactive, web-based digital catalog exploring the **Daha Ata Sanniya**, the traditional Sri Lankan mask dance ritual used for healing. This project combines cultural heritage with modern web interactivity to provide an educational experience.
 
 ## 🌟 Live Demo
-View the project here: https://hevan03.github.io/Daha-Ata-Sanniya-Website/
+View the project here: https://dahaatasanniya.com/
 
 ## ✨ Features
 * **Interactive 3D Flip Cards:** Each mask features a high-quality visual on the front and a detailed clinical/cultural description on the back.
